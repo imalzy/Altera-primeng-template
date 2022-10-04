@@ -30,6 +30,12 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Dashboard',icon: 'pi pi-fw pi-home', routerLink: ['/']}
                 ]
             },
+            {
+              label: 'Course',
+              items:[
+                  {label: 'Pertemuan 2',icon: 'pi pi-fw pi-home', routerLink: ['/course/p2']}
+              ]
+          },
         ];
     }
 

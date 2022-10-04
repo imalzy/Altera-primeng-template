@@ -4,8 +4,9 @@ import {async, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
-import {AppMainComponent} from './app.main.component';
-import {AppMenuComponent} from './app.menu.component';
+import { AppMenuComponent } from './core/layouts/app.menu.component';
+import { AppMainComponent } from './core/layouts/app.main.component';
+
 
 describe('AppComponent', () => {
     beforeEach(() => {

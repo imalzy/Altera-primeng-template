@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -14,15 +13,15 @@ import { AppConfigComponent } from './core/layouts/app.config.component';
 import { AppMenuComponent } from './core/layouts/app.menu.component';
 import { AppMenuitemComponent } from './core/layouts/app.menuitem.component';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MenuService } from './service/app.menu.service';
 import { ConfigService } from './service/app.config.service';
 import { NgPrimeModule } from './shared/ngprime.module';
+import { EmployeeService } from './pages/employee/services/employee.service';
 
 @NgModule({
     imports: [
         BrowserModule,
-        FormsModule,
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
