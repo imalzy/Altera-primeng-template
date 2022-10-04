@@ -1,0 +1,86 @@
+<div class="col-12">
+  <div class="card">
+    <div class="flex justify-content-between align-items-center mb-5">
+      <h5>Communication With child component</h5>
+    </div>
+
+    <div class="d-flex">
+      <div class="form">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Id</label>
+            <input
+              type="number"
+              formControlName="id"
+              class="form-control"
+              id="id"
+              placeholder="Enter email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nama</label>
+            <input
+              type="text"
+              formControlName="nama"
+              class="form-control"
+              id="nama"
+              aria-describedby="emailHelp"
+              placeholder="Enter nama"
+            />
+            <small id="emailHelp" class="form-text text-muted"
+              >We'll never share your email with anyone else.</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Kota</label>
+            <input
+              type="text"
+              formControlName="kota"
+              class="form-control"
+              id="kota"
+              aria-describedby="emailHelp"
+              placeholder="Enter kota"
+            />
+            <small id="emailHelp" class="form-text text-muted"
+              >We'll never share your email with anyone else.</small
+            >
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+            Submit
+          </button>
+        </form>
+      </div>
+      <app-table
+        [items]="items"
+        (editData)="onEdit($event)"
+        (deleteData)="onDelete($event)"
+      ></app-table>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Two Binding</label>
+      <input
+        type="text"
+        [(ngModel)]="nama"
+        class="form-control"
+        id="nama"
+        aria-describedby="emailHelp"
+        placeholder="Enter nama"
+      />
+      <pre>{{ nama }}</pre>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">One Binding</label>
+      <input
+        type="text"
+        [ngModel]="nama2"
+        (ngModelChange)="nama2 = $event"
+        class="form-control"
+        id="nama"
+        aria-describedby="emailHelp"
+        placeholder="Enter nama"
+      />
+      <pre>{{ nama2 }}</pre>
+    </div>
+  </div>
+</div>

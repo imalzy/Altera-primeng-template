@@ -81,10 +81,14 @@ import { TreeModule } from 'primeng/tree';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeTableModule } from 'primeng/treetable';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
     exports: [
+      FormsModule,
+      ReactiveFormsModule,
+
         AccordionModule,
         AutoCompleteModule,
         AvatarModule,
