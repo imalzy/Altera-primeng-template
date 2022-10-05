@@ -1,0 +1,171 @@
+<div
+  class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden"
+>
+  <div class="grid justify-content-center p-2 lg:p-0" style="min-width: 80%">
+    <div
+      class="col-12 xl:col-6"
+      style="
+        border-radius: 56px;
+        padding: 0.3rem;
+        background: linear-gradient(
+          180deg,
+          var(--primary-color) 10%,
+          rgba(33, 150, 243, 0) 30%
+        );
+      "
+    >
+      <div
+        class="h-full w-full m-0 py-7 px-4"
+        style="
+          border-radius: 53px;
+          background: linear-gradient(
+            180deg,
+            var(--surface-50) 38.9%,
+            var(--surface-0)
+          );
+        "
+      >
+        <div class="text-center mb-5">
+          <img
+            src="assets/layout/images/avatar.png"
+            alt="Image"
+            height="50"
+            class="mb-3"
+          />
+          <h1 class="text-600 font-medium">Registration</h1>
+        </div>
+
+        <div class="w-full md:w-10 mx-auto">
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="p-field p-fluid">
+              <label
+                for="fullname"
+                class="block text-900 text-xl font-medium mb-2"
+                >Fullname <span style="color: red">*</span></label
+              >
+              <input
+                id="fullname"
+                formControlName="fullname"
+                type="text"
+                placeholder="Example: Jhon doe"
+                pInputText
+                class="w-full mb-3"
+                style="padding: 1rem"
+              />
+              <div
+              *ngIf="submitted && formControl.fullname.errors"
+              style="color: red"
+            >
+              <small
+                *ngIf="formControl.fullname.errors.required"
+                id="fullname-help"
+                class="p-invalid"
+                style="color: red"
+                >fullname is required</small
+              >
+            </div>
+            </div>
+
+            <div class="p-field p-fluid">
+              <label
+                for="email1"
+                class="block text-900 text-xl font-medium mb-2"
+                >Email <span style="color: red">*</span></label
+              >
+              <input
+                id="email1"
+                formControlName="email"
+                type="text"
+                placeholder="Email address"
+                pInputText
+                class="w-full mb-3"
+                style="padding: 1rem"
+              />
+
+              <div
+                *ngIf="submitted && formControl.email.errors"
+                style="color: red"
+              >
+                <small
+                  *ngIf="formControl.email.errors.required"
+                  id="email-help"
+                  class="p-invalid"
+                  style="color: red"
+                  >Email is required</small
+                >
+              </div>
+            </div>
+
+            <div class="p-field p-fluid">
+              <label
+                for="password"
+                class="block text-900 text-xl font-medium mb-2"
+                >Password</label
+              >
+              <input
+                id="password"
+                formControlName="password"
+                type="text"
+                placeholder="Password"
+                pInputText
+                class="w-full mb-3"
+                style="padding: 1rem"
+              />
+
+              <div
+                *ngIf="submitted && formControl.password.errors"
+                style="color: red"
+              >
+                <small
+                  *ngIf="formControl.password.errors.required"
+                  id="password-help"
+                  class="p-invalid"
+                  style="color: red"
+                  >Password is required</small
+                >
+              </div>
+            </div>
+
+            <div class="p-field p-fluid">
+              <label
+                for="retryPassword"
+                class="block text-900 text-xl font-medium mb-2"
+                >Password</label
+              >
+              <input
+                id="retryPassword"
+                formControlName="retryPassword"
+                type="text"
+                placeholder="Re - Password"
+                pInputText
+                class="w-full mb-3"
+                style="padding: 1rem"
+              />
+
+              <div
+                *ngIf="submitted && formControl.retryPassword.errors"
+                style="color: red"
+              >
+                <div *ngIf="formControl.retryPassword.errors.required">
+                  Re-password is required
+                </div>
+                <div
+                  *ngIf="formControl.retryPassword.errors.passwordsNotMatching"
+                >
+                  Password not match
+                </div>
+              </div>
+            </div>
+            <button
+              pButton
+              pRipple
+              label="Sign up"
+              class="w-full p-3 text-xl"
+              [disabled]="submitted"
+            ></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
