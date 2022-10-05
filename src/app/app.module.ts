@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,8 @@ import { MenuService } from './service/app.menu.service';
 import { ConfigService } from './service/app.config.service';
 import { NgPrimeModule } from './shared/ngprime.module';
 import { MessageService } from 'primeng/api';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HttpInterceptorInterceptor } from './core/interceptor/http-interceptor.interceptor';
 
 @NgModule({
     imports: [
@@ -36,12 +38,18 @@ import { MessageService } from 'primeng/api';
         AppMenuComponent,
         AppMenuitemComponent,
         DashboardComponent,
+        NotFoundComponent,
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         MenuService,
         ConfigService,
-        MessageService
+        MessageService,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: HttpInterceptorInterceptor,
+          multi: true
+        }
     ],
     bootstrap: [AppComponent],
 })

@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  api: 'https://jsonplaceholder.typicode.com'
+  endpoint: {
+    mockApi: 'https://jsonplaceholder.typicode.com',
+    altaApi: 'https://alta-shop.herokuapp.com/api',
+  },
 };
 
 /*

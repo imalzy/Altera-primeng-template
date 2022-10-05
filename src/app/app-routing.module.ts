@@ -3,36 +3,55 @@ import { NgModule } from '@angular/core';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AppMainComponent } from './core/layouts/app.main.component';
 import { AuthGuard } from './core/auth.guard';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: AppMainComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [{ path: 'dashboard', component: DashboardComponent }],
   },
   {
     path: 'course',
-    // canLoad: [AuthGuard],
-    // canActivate: [AuthGuard],
+     canLoad: [AuthGuard], //gagal /JS Lazy loadnya tidak akan di unduh
+    canActivate: [AuthGuard], //gagal / JS akan di unduh
     component: AppMainComponent,
     loadChildren: () =>
       import('./pages/course/course.module').then((mod) => mod.CourseModule),
   },
   {
     path: 'employee',
-    // canLoad: [AuthGuard],
-    // canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
     component: AppMainComponent,
     loadChildren: () =>
-      import('./pages/employee/employee.module').then((mod) => mod.EmployeeModule),
+      import('./pages/employee/employee.module').then(
+        (mod) => mod.EmployeeModule
+      ),
   },
   {
-    path: 'login',
+    path: 'e-commerce',
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
+    component: AppMainComponent,
     loadChildren: () =>
-      import('./pages/login/login.module').then((mod) => mod.LoginModule),
+      import('./pages/e-commerce/e-commerce.module').then(
+        (mod) => mod.ECommerceModule
+      ),
   },
-  { path: '**', redirectTo: 'pages/notfound' },
+  {
+    path: 'auth',
+    loadChildren: () =>
+    import('./pages/auth/auth.module').then((mod) => mod.AuthModule),
+  },
+  { path: 'pages/not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: 'pages/not-found' },
 ];
 @NgModule({
   imports: [

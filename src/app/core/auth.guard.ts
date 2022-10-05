@@ -1,31 +1,34 @@
+import { SessionService } from './../pages/auth/service/session.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import {
+  CanActivate,
+  CanLoad,
+  Router,
+} from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
+  constructor(private router: Router, private sessionService:SessionService) {}
 
-  constructor(private router:Router){}
-
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // const auth = localStorage.getItem('auth');
-      // if(auth){
-      //   return true;
-      // }
-      // this.router.navigateByUrl('/login')
-    return false;
+  canActivate() {
+    return this.canLoad();
   }
 
-  canLoad(route: Route): boolean {
-    // const auth = localStorage.getItem('auth');
-    //   if(auth){
-    //     return true;
-    //   }
-    //   this.router.navigateByUrl('/login')
-    return true;
+  canLoad(): boolean {
+    const result = this.isLogin();
+    if(result == false){
+      this.router.navigateByUrl("/auth/login")
+    }
+    return result;
+  }
+
+  isLogin(): boolean {
+    if (this.sessionService.isUserLogin()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

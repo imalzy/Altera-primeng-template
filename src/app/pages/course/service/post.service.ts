@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class PostService {
-  urlApi: string = environment.api;
+  urlApi: string = environment.endpoint.mockApi;
   constructor(private httpClient: HttpClient, private toastr: ToastrService) {}
 
   // getPost(): any {
