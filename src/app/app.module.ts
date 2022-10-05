@@ -17,7 +17,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MenuService } from './service/app.menu.service';
 import { ConfigService } from './service/app.config.service';
 import { NgPrimeModule } from './shared/ngprime.module';
-import { EmployeeService } from './pages/employee/services/employee.service';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
     imports: [
@@ -25,7 +25,7 @@ import { EmployeeService } from './pages/employee/services/employee.service';
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        NgPrimeModule
+        NgPrimeModule,
     ],
     declarations: [
         AppComponent,
@@ -41,6 +41,7 @@ import { EmployeeService } from './pages/employee/services/employee.service';
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         MenuService,
         ConfigService,
+        MessageService
     ],
     bootstrap: [AppComponent],
 })
