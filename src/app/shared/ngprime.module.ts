@@ -84,6 +84,9 @@ import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+import { ToastrModule } from 'ngx-toastr';
+
+
 @NgModule({
     exports: [
       FormsModule,
@@ -169,7 +172,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         TreeSelectModule,
         TreeTableModule,
         VirtualScrollerModule,
-        StyleClassModule,
-    ]
+        StyleClassModule
+    ],
+    imports: [
+      ToastrModule.forRoot({
+        timeOut: 10000,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: true,
+      }),
+    ],
+    providers: []
 })
 export class NgPrimeModule { }

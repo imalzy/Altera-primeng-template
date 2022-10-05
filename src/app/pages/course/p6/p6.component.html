@@ -1,0 +1,89 @@
+<div class="col-12">
+  <div class="card">
+    <div class="flex justify-content-between align-items-center mb-5">
+      <h5>POST</h5>
+    </div>
+    <p-toolbar styleClass="mb-4">
+      <ng-template pTemplate="left">
+        <div class="my-2">
+          <button
+            pButton
+            pRipple
+            label="New"
+            icon="pi pi-plus"
+            class="p-button-success mr-2"
+            (click)="showDialog()"
+          ></button>
+        </div>
+      </ng-template>
+    </p-toolbar>
+    <!-- <p-table #dt [value]="products" responsiveLayout="scroll" [rows]="10"
+      [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true"
+      [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts"
+      selectionMode="multiple" [rowHover]="true" dataKey="id"> -->
+    <!-- <p-table [value]="items" responsiveLayout="scroll"> -->
+    <p-table [value]="items$ | async" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Message</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td>{{ product?.id }}</td>
+          <td>{{ product?.title }}</td>
+          <td>{{ product?.body }}</td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success mr-2"
+              (click)="editProduct(product)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-warning mt-2"
+              (click)="deleteProduct(product)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- title: 'foo',
+body: 'bar',
+userId: 1, -->
+
+<p-dialog [(visible)]="display" header="Form Add">
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+    <input type="text" [(ngModel)]="userId" pInputText placeholder="UserId" />
+  </div>
+
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+    <input type="text" [(ngModel)]="title" pInputText placeholder="Title" />
+  </div>
+
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+    <input type="text" [(ngModel)]="message" pInputText placeholder="Message" />
+  </div>
+
+  <button
+    pButton
+    type="button"
+    label="Submit"
+    class="p-button-secondary"
+    (click)="addData()"
+  ></button>
+</p-dialog>
