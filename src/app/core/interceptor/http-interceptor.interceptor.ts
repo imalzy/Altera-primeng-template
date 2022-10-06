@@ -5,9 +5,10 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { catchError, Observable, of } from 'rxjs';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Injectable()
 export class HttpInterceptorInterceptor implements HttpInterceptor {
   constructor(private sessionService: SessionService) {}
@@ -32,6 +33,29 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
         body: request.body || {},
       });
     }
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((error:HttpErrorResponse)=>{
+        this.handleError(error);
+        return of(error)
+      }) as any
+    );
+  }
+
+  private handleError(err:HttpErrorResponse):Observable<any> {
+    console.log(err);
+    if(err.status === 400){
+      Swal.fire({
+        icon: 'error',
+        title: err?.status,
+        text: err?.error?.error,
+      })
+    }else if(err.status === 500){
+      Swal.fire({
+        icon: 'error',
+        title: 'Internal Service Error',
+        text: err?.error?.error,
+      })
+    }
+    throw Error;
   }
 }
